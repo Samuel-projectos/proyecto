@@ -26,7 +26,6 @@ public class Cuenta {
 	private double saldo;
 	private double interes_cuenta;
 	private double comision;
-	private Cliente cliente;
 	
 	/**
 	 * @param nCuenta = Número que tiene la cuenta
@@ -42,12 +41,11 @@ public class Cuenta {
 	 * @param comision = 0.6 (variable)
 	 * @param cliente = Propietario de la cuenta
 	 */
-	public Cuenta(Cliente cliente) {
+	public Cuenta() {
 		nCuenta+=1;
 		saldo=0;
 		interes_cuenta=0.1;
 		comision=0.6;
-		this.cliente=cliente;
 	}
 
 	/**
@@ -76,10 +74,6 @@ public class Cuenta {
 		this.comision = comision;
 	}
 	
-	public Cliente getCliente() {
-		return cliente;
-	}
-	
 	/**
 	 * Metodo para ingresar dinero
 	 * @param cantidad = La cantidad que se ingresa
@@ -88,7 +82,7 @@ public class Cuenta {
 	 * Metodo para ingresar dinero
 	 * @param cantidad = La cantidad que se ingresa
 	 */
-	public void ingresar(int cantidad) {
+	public void añadir(int cantidad) {
 		this.saldo+=cantidad;
 		System.out.println("Se ha ingresado "+cantidad+"€");
 	}
@@ -120,10 +114,9 @@ public class Cuenta {
 	 * Metodo que muestra los datos de la cuenta 
 	 */
 	public void consultar() {
-		System.out.println("\tNumero cuenta: "+getNcuenta()+"\n"
-				+ "\tDNI: "+getCliente().getDni()+"\n"
-						+ "\tSaldo: "+getSaldo()+"\n"
-						+ "\tComisión: "+getComision());
+		System.out.println("\tNumero cuenta: "+nCuenta+"\n"
+						+ "\tSaldo: "+saldo+"\n"
+						+ "\tComisión: "+comision);
 	}
 	
 	/**

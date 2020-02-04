@@ -3,12 +3,39 @@ package acciones;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Set;
 
 import Exepciones.ExepcionNumerica;
 import objetos.Cliente;
 
 public class AccClientes {
-	static HashMap<String, Cliente> clientes;
+	HashMap<String, Cliente> clientes;
+	
+	/**
+	 * Constructor
+	 */
+	/*
+	 * Constructor
+	 */
+	public AccClientes() {
+		clientes = new HashMap<>();
+	}
+	
+	/**
+	 * Metodo que comprueba la key
+	 */
+	/*
+	 * Metodo que comprueba la key
+	 */
+	public boolean key(String dni) {
+		boolean resultado=false;
+		for (String i : clientes.keySet()) {
+			if (clientes.get(i).getDni().equals(dni)) {
+				resultado=true;
+			}
+		}
+		return resultado;
+	}
 	
 	/**
 	 * Metodo que nos crea el cliente y de forma valida

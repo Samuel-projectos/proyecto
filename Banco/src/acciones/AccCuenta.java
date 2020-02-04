@@ -8,8 +8,13 @@ import acciones.AccClientes;
 import objetos.Cuenta;
 
 public class AccCuenta {
-	static HashMap<String, Cuenta> cuentas;
-	static AccClientes cliente=new AccClientes();
+	HashMap<String, Cuenta> cuentas;
+	AccClientes cliente;
+
+	public AccCuenta(AccClientes clientes) {
+		cuentas=new HashMap<>();
+		cliente=clientes;
+	}
 	
 	/**
 	 * Metodos
@@ -30,13 +35,15 @@ public class AccCuenta {
 			System.out.println("Introduce el dni:");
 			dni=scn.next();
 			if (validarDni(dni)==false) {
-			System.out.println("DNI invalido, vuelva a intentar");
+			System.out.println("DNI no valido, vuelva a intentar");
 			}
-			if(clienteEsta(dni)==true) {
-				cuentas.put(dni, new Cuenta(cliente.clienteDni(dni)));
+			if(cliente.key(dni)==true) {
+				Cuenta c=new Cuenta();
+				cuentas.put(dni, c);
+				System.out.println("Cuenta creada");
 			}
 			else {
-				clienteEsta(dni);
+				System.out.println("El cliente no existe");
 			}
 		}while (validarDni(dni)==false);
 			
@@ -65,7 +72,7 @@ public class AccCuenta {
 		}
 		System.out.println("¿Cuanto dinero desea ingresar?");
 		int n=src.controlaInt();
-		cuentas.get(dni).ingresar(n);
+		cuentas.get(dni).añadir(n);
 		System.out.println("Su saldo es: "+cuentas.get(dni).getSaldo());	
 	}
 	
@@ -77,6 +84,7 @@ public class AccCuenta {
 	 */
 	public void listarCuentas() {
 		for (String i : cuentas.keySet()) {
+			System.out.println(i);
 			cuentas.get(i).consultar();
 		}	
 	}
@@ -231,18 +239,12 @@ public class AccCuenta {
 	 * @param dni
 	 * @return
 	 */
-	public static boolean clienteEsta(String dni) {
-		boolean resultado=false;
-		for (String i : cuentas.keySet()) {
-			if (dni==i) {
-				resultado=true;
-				break;
-			}
-			else {
-				System.out.println("El cliente no existe");
-				resultado=false;
-			}
+	public boolean clienteEsta(String dni) {
+		if (cliente.key(dni)==true) {
+			return true;
 		}
-		return resultado;
+		else {
+			return false;
+		}
 	}
 }

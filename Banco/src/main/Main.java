@@ -38,7 +38,7 @@ public class Main {
 		Scanner scn = new Scanner(System.in);
 		ExepcionNumerica src=new ExepcionNumerica();
 		AccClientes cliente=new AccClientes();
-		AccCuenta cuenta=new AccCuenta();
+		AccCuenta cuenta=new AccCuenta(cliente);
 		String dni;
 
 		do {

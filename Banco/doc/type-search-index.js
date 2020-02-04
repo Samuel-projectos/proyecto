@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"acciones","l":"AccClientes"},{"p":"acciones","l":"AccCuenta"},{"l":"All Classes","url":"allclasses-index.html"},{"p":"objetos","l":"Cliente"},{"p":"objetos","l":"Cuenta"},{"p":"Exepciones","l":"ExepcionNumerica"},{"p":"main","l":"Main"}]
