@@ -9,6 +9,12 @@ import Exepciones.ExepcionNumerica;
 import objetos.Cliente;
 
 public class AccClientes {
+	/**
+	 * Usamos el hashMap para que almacene los clientes y poder encontrarlo mediante una key que será el DNI
+	 */
+	/*
+	 * Usamos el hashMap para que almacene los clientes y poder encontrarlo mediante una key que será el DNI
+	 */
 	HashMap<String, Cliente> clientes;
 	
 	/**

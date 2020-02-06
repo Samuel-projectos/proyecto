@@ -8,6 +8,12 @@ import acciones.AccClientes;
 import objetos.Cuenta;
 
 public class AccCuenta {
+	/**
+	 * Usamos el hashMap para que almacene los cuentas y poder encontrarlo mediante una key que será el DNI
+	 */
+	/*
+	 * Usamos el hashMap para que almacene los cuentas y poder encontrarlo mediante una key que será el DNI
+	 */
 	HashMap<String, Cuenta> cuentas;
 	AccClientes cliente;
 
