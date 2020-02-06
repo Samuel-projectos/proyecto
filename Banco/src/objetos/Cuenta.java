@@ -1,5 +1,11 @@
 package objetos;
-	
+
+import java.io.IOException;
+import java.util.Scanner;
+
+import Exepciones.ExepcionNumerica;
+import acciones.AccClientes;
+
 /**
  * 
  * @author Samuel Robles Rivas
@@ -26,6 +32,7 @@ public class Cuenta {
 	private double saldo;
 	private double interes_cuenta;
 	private double comision;
+	private AccClientes clientes;
 	
 	/**
 	 * @param nCuenta = Número que tiene la cuenta
@@ -41,11 +48,12 @@ public class Cuenta {
 	 * @param comision = 0.6 (variable)
 	 * @param cliente = Propietario de la cuenta
 	 */
-	public Cuenta() {
+	public Cuenta(AccClientes clientes) {
 		nCuenta+=1;
 		saldo=0;
 		interes_cuenta=0.1;
 		comision=0.6;
+		this.clientes=clientes;
 	}
 
 	/**
@@ -77,14 +85,29 @@ public class Cuenta {
 	/**
 	 * Metodo para ingresar dinero
 	 * @param cantidad = La cantidad que se ingresa
+	 * @throws IOException 
 	 */
 	/*
 	 * Metodo para ingresar dinero
 	 * @param cantidad = La cantidad que se ingresa
 	 */
-	public void añadir(int cantidad) {
-		this.saldo+=cantidad;
-		System.out.println("Se ha ingresado "+cantidad+"€");
+	public void añadir() throws IOException {
+		Scanner scn=new Scanner(System.in);
+		ExepcionNumerica src=new ExepcionNumerica();
+		String dni;
+		do {
+			System.out.println("Introduce el dni:");
+			dni=scn.next();
+		}while (validarDni(dni)==false);
+		if(clienteEsta(dni)==true) {
+		}
+		else {
+			clienteEsta(dni);
+		}
+		System.out.println("¿Cuanto dinero desea ingresar?");
+		int n=src.controlaInt();
+		saldo+=n;
+		System.out.println("Su saldo es: "+saldo);
 	}
 	
 	/**
@@ -105,6 +128,33 @@ public class Cuenta {
 			this.saldo-=cantidad;
 			System.out.println("Se ha ingresado "+cantidad+"€");
 		}
+	}
+	
+	/**
+	 * Metodo que nos permite retirar dinero de nuestra cuenta.
+	 * @throws IOException
+	 */
+	/*
+	 * Metodo que nos permite retirar dinero de nuestra cuenta.
+	 * @throws IOException
+	 */
+	public void retirarSaldo() throws IOException {
+		Scanner scn=new Scanner(System.in);
+		String dni;
+		ExepcionNumerica src=new ExepcionNumerica();
+		do {
+			System.out.println("Introduce el dni:");
+			dni=scn.next();
+		}while (validarDni(dni)==false);
+		if(clienteEsta(dni)==true) {
+		}
+		else {
+			clienteEsta(dni);
+		}
+		System.out.println("¿Cuanto dinero desea retirar?");
+		int r=src.controlaInt();
+		retirar(r);
+		System.out.println("Su saldo es: "+saldo);
 	}
 	
 	/**
@@ -158,6 +208,70 @@ public class Cuenta {
 		}
 		else {
 			return true;
+		}
+	}
+	
+	/**
+	 * Validaciones
+	 */
+	/*
+	 * Validaciones
+	 */
+	/**
+	 * Comprueba si el DNI is válido
+	 * @param DNI
+	 * @return true: es válido, false: no es valido
+	 */
+	/*
+	 * Comprueba si el DNI is válido
+	 * @param DNI
+	 * @return true: es válido, false: no es valido
+	 */
+	public static boolean validarDni (String DNI){
+	    if (DNI.toUpperCase().matches("^[0-9]{8}[A-Z]{1}$")) {
+	        return true;
+
+	    }else{
+	        return false;
+	    }  
+	}
+	
+	/**
+	 * Comprueba si el teléfono es válido
+	 * @param numero
+	 * @return true: es valido, false: es invalido
+	 */
+	/*
+	 * Comprueba si el teléfono es válido
+	 * @param numero
+	 * @return true: es valido, false: es invalido
+	 */
+	public static boolean validarTelefono(Integer numero) {
+		String n=numero+"";
+		if (n.toUpperCase().matches("^[0-9]{9}")) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	/**
+	 * Metodo para saber si el clienta ya está creado
+	 * @param dni
+	 * @return
+	 */
+	/*
+	 * Metodo para saber si el clienta ya está creado
+	 * @param dni
+	 * @return
+	 */
+	public boolean clienteEsta(String dni) {
+		if (clientes.key(dni)==true) {
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 }

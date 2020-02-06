@@ -53,7 +53,17 @@ public class Main {
 						cliente.crearCliente();
 						break;
 					case 2:
-						cuenta.crearCuenta();
+						String key=null;
+						do {
+							System.out.println("Introduce el DNI");
+							key=scn.next();
+							if (validarDni(key)==true) {
+								cuenta.crearCuenta(key);
+							}
+							else {
+								System.out.println("El DNI no es válido");
+							}
+						}while (validarDni(key)!=true);
 						break;
 					case 3:
 						int i;
@@ -79,10 +89,29 @@ public class Main {
 						} while(i<1||i>3);
 						break;
 					case 4:
-						cuenta.ingresar();
+						key=null;
+						do {
+							System.out.println("Introduce el DNI");
+							key=scn.next();
+							if (validarDni(key)==true) {
+								cuenta.ingresarSaldo(key);
+							}
+							else {
+								System.out.println("El DNI no es válido");
+							}
+						}while (validarDni(key)!=true);
 						break;
 					case 5:
-						cuenta.retirar();
+						key=null;
+						do {
+							System.out.println("Introduce el DNI");
+							key=scn.next();
+							if (validarDni(key)==true) {
+								cuenta.retirarSaldo(key);							}
+							else {
+								System.out.println("El DNI no es válido");
+							}
+						}while (validarDni(key)!=true);
 						break;
 					case 6:
 						cuenta.mostrar();
@@ -145,6 +174,31 @@ public class Main {
 		else {
 			return true;
 		}
+	}
+	
+	/**
+	 * Validaciones
+	 */
+	/*
+	 * Validaciones
+	 */
+	/**
+	 * Comprueba si el DNI is válido
+	 * @param DNI
+	 * @return true: es válido, false: no es valido
+	 */
+	/*
+	 * Comprueba si el DNI is válido
+	 * @param DNI
+	 * @return true: es válido, false: no es valido
+	 */
+	public static boolean validarDni (String DNI){
+	    if (DNI.toUpperCase().matches("^[0-9]{8}[A-Z]{1}$")) {
+	        return true;
+
+	    }else{
+	        return false;
+	    }  
 	}
 }
 	

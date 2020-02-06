@@ -28,22 +28,6 @@ public class AccClientes {
 	}
 	
 	/**
-	 * Metodo que comprueba la key
-	 */
-	/*
-	 * Metodo que comprueba la key
-	 */
-	public boolean key(String dni) {
-		boolean resultado=false;
-		for (String i : clientes.keySet()) {
-			if (clientes.get(i).getDni().equals(dni)) {
-				resultado=true;
-			}
-		}
-		return resultado;
-	}
-	
-	/**
 	 * Metodo que nos crea el cliente y de forma valida
 	 * @throws IOException
 	 */
@@ -155,5 +139,21 @@ public class AccClientes {
 		else {
 			return false;
 		}
+	}
+	
+	/**
+	 * Metodo que comprueba la key
+	 */
+	/*
+	 * Metodo que comprueba la key
+	 */
+	public boolean key(String dni) {
+		boolean resultado=false;
+		for (String i : clientes.keySet()) {
+			if (clientes.get(i).getDni().equals(dni)) {
+				resultado=true;
+			}
+		}
+		return resultado;
 	}
 }
