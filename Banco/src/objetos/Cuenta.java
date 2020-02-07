@@ -178,7 +178,7 @@ public class Cuenta {
 	 * @return saldo
 	 */
 	public double revisionMensual() {
-		saldo+=(saldo*interes_cuenta/100)-comision;
+		saldo-=(saldo*interes_cuenta/100)-comision;
 		return saldo;
 	}
 	
